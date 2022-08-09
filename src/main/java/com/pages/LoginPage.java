@@ -18,16 +18,44 @@ public class LoginPage {
     @FindBy(xpath="//h2[contains(.,'New User Signup!')]")
     WebElement newUserSignUpText;
 
+    @FindBy(css="form[action='/login']>input[name='email']")
+    WebElement  loginEmailField;
+
+    @FindBy(css="form[action='/login']>input[name='password']")
+    WebElement  loginPasswordField;
+
+    @FindBy(css="form[action='/login']>button[type='submit']")
+    WebElement  loginSubmitField;
+
+
     @FindBy(css="form[method='post'] > input[name='name']")
     WebElement  RegnameField;
 
     @FindBy(css="input[data-qa='signup-email']")
     WebElement  RegemailField;
 
-   // @FindBy(css="button[data-qa='signup-button']")
+
     @FindBy(xpath="//form[@action='/signup']/button[@type='submit']")
     WebElement  signUpButton;
-    //li:nth-of-type(4) > a
+
+    @FindBy(css="a[href*='delete']")
+    WebElement  loggedInUser;
+
+    @FindBy(css="a[href*='delete']")
+    WebElement  deleteAccountLink;
+
+    @FindBy(css="form[action='/signup'] >p")
+    WebElement  emailErrorMessageText;
+
+
+
+    @FindBy(xpath="//p[contains(.,'Your email or password is incorrect!')]")
+    WebElement  errorMessageText;
+
+    public String verifyEmailErrorMessageIsVisible(){
+      String errorMessage=  emailErrorMessageText.getText();
+      return errorMessage;
+    }
 
     public boolean verifyNewUserSignupIsVisible() {
         // JavaScript Executor to check ready state
@@ -51,8 +79,34 @@ public class LoginPage {
         System.out.println(email);
         RegemailField.sendKeys(email);
     }
+    public void EnterNameAndAlreadyRegisteredEmailAddress(String name,String mailId){
+        RegnameField.sendKeys(name);
+        RegemailField.sendKeys(mailId);
+
+    }
+
+
+    public void loginAsValidUser(String email,String password){
+        loginEmailField.sendKeys(email);
+        loginPasswordField.sendKeys(password);
+        loginSubmitField.click();
+    }
     public void loginIntoRegistrationPage() {
         signUpButton.click();
+    }
+
+
+    public boolean verifyThatLoggedusernameIsVisible(){
+        return loggedInUser.isDisplayed();
+    }
+
+    public void ClickDeleteAccountButton(){
+        deleteAccountLink.click();
+    }
+    public boolean isErrorMessageTextVisible(){
+        return errorMessageText.isDisplayed();
+
+
     }
 
 }

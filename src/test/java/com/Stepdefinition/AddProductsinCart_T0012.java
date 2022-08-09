@@ -12,7 +12,8 @@ public class AddProductsinCart_T0012 extends BaseClass{
       NavigationPage navigation = new NavigationPage(driver);
       ContactUsPage contactUs = new ContactUsPage(driver);
       ProductPage product = new ProductPage(driver);
-
+    LoginPage loginPage = new LoginPage(driver);
+    CartPage cart =new CartPage(driver);
 
 
       //1  Navigate to url 'http://automationexercise.com'
@@ -28,13 +29,26 @@ public class AddProductsinCart_T0012 extends BaseClass{
      // Hover over first product and click 'Add to cart'
     product.selectFirstAddtToCartButton();
     //6  Click 'Continue Shopping' button
-    Thread.sleep(5000);
+
     product.selectFirstContinueShopping();
 
     //7 Hover over second product and click 'Add to cart'
-  Thread.sleep(5000);
     product.selectSecondAddtToCartButton();
+
+    //8. Click 'View Cart' button
     product.clickViewCart();
    // product.selectSecondContinueShoppingButton();
+
+
+    //9. Verify both products are added to Cart
+
+     Assert.assertTrue(cart.verifyBothProductsAreAddedToCart(),"product added is not found");
+
+     //10. Verify their prices, quantity and total price
+
+    //product price   td[class='cart_price']
+
+    //product quantity  td[class='cart_quantity']
+    //product total price  p[class='cart_total_price']
     }
 }

@@ -34,6 +34,7 @@ public class VerifySubscriptionInHomePage_T0010 extends BaseClass{
 
         homePage.enterEmailAndNavigateToNextPage("abc@gmail.com");
 
+        //7. Verify success message 'You have been successfully subscribed!' is visible
         homePage.confirmMessageSent(driver);
 
 

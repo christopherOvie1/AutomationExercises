@@ -16,15 +16,16 @@ public class VerifyTestCasesPage_T007 extends BaseClass{
 
         //1  Navigate to url 'http://automationexercise.com'
 
-        driver.get(baseURL);
 
+driver.navigate().to(baseURL);
+//3. Verify that home page is visible successfully
         System.out.println(homePage.VerifyThatHomePageIsVisibleSuccessfully());
         Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
 
-        //2  Click on 'Test Cases' button
+        //4   Click on 'Test Cases' button
         navigation.NavigateTo("Test Cases");
 
-        //Verify user is navigated to test cases page successfully
+        // 5 Verify user is navigated to test cases page successfully
         System.out.println(testCases.isTestCasePageNavigatedToSuccessfully());
         Assert.assertTrue(testCases.isTestCasePageNavigatedToSuccessfully());
 

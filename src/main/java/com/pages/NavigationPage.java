@@ -26,10 +26,8 @@ public class NavigationPage {
 
     public void NavigateTo(String section)
     {
-       // Reporting.Log.AppendLine("Navigating to " + section);
-        //WebElement sectionSelector = By.XPath("//span[contains(.,'" + section + "')]");
-       // Interactions.Click(sectionSelector);
-      WebElement homePageLinks=  driver.findElement(By.xpath("//a[contains(.,'" + section + "')]"));
+        WebElement homePageLinks=  driver.findElement(By.xpath("//a[contains(.,'" + section + "')]"));
         homePageLinks.click();
     }
+
 }

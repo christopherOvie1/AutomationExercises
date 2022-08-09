@@ -3,15 +3,8 @@ package com.Stepdefinition;
 import com.pages.ContactUsPage;
 import com.pages.HomePage;
 import com.pages.NavigationPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
-
-import static com.pages.ContactUsPage.acceptAlert;
 
 public class ContactUs_T006 extends BaseClass{
 
@@ -41,15 +34,18 @@ public class ContactUs_T006 extends BaseClass{
        //4  Enter name, email, subject and message
 
        contactUs.fillContactUsForm(name,email,subject,message);
+       //8. Click 'Submit' button
        contactUs.clickSubmitButton();
        contactUs.AcceptAlerts(driver);
        //ContactUsPage.acceptAlert(driver);
 
-       //confirm receiving succcessful message
-       System.out.println(contactUs.isSuccessMessagePresent());
-       Assert.assertTrue(contactUs.isSuccessMessagePresent());
+       // 10. Verify success message 'Success! Your details have been submitted successfully.' is visible
+       boolean  successMessagDisplay= contactUs.isSuccessMessagPresent();
+               Assert.assertTrue(successMessagDisplay,"successmessage is displayed");
+      System.out.println(contactUs.isSuccessMessagePresent());
+     //  Assert.assertTrue(contactUs.isSuccessMessagePresent());
 
-       //Click 'Home' button and verify that landed to home page successfully
+       // 11 Click 'Home' button and verify that landed to home page successfully
        contactUs.clickBackButton();
 
        System.out.println(homePage.VerifyThatHomePageIsVisibleSuccessfully());

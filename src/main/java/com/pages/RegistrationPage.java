@@ -57,6 +57,22 @@ public class RegistrationPage {
     @FindBy(css="#country")
     WebElement  countryDropdown;
 
+    @FindBy(css="#state")
+    WebElement  stateField;
+
+    @FindBy(css="#city")
+    WebElement  cityField;
+
+    @FindBy(css="#zipcode")
+    WebElement  zipcodeField;
+
+    @FindBy(css="#mobile_number")
+    WebElement  mobileNumberField;
+
+    @FindBy(xpath="//button[contains(.,'Create Account')]")
+    WebElement  createAccountButton;
+
+    //Create Action
     public void getRadioButtons() {
 
         //List<WebElement> radioButtons=	driver.findElements(By.cssSelector("input[type='radio']"));
@@ -95,19 +111,22 @@ public class RegistrationPage {
 
     }
 
-    public void enterAddressInfo(String firstNm,String lastNm,String company,String address1,String address2){
+    public void enterAddressInfo(String firstNm,String lastNm,String company,String address1,String address2,String countries,String state,String city,String zipcode,String mobileNumber){
         firstNameField.sendKeys(firstNm);
         lastNameField.sendKeys(lastNm);
         companyField.sendKeys(company);
        addressField1.sendKeys(address1);
         addressField2.sendKeys(address2);
+        Select contry = new Select(countryDropdown);
+        contry.selectByVisibleText(countries);
+        stateField.sendKeys(state);
+        cityField.sendKeys(city);
+        zipcodeField.sendKeys(zipcode);
+        mobileNumberField.sendKeys(mobileNumber);
+        createAccountButton.click();
 
 
     }
 
-    public WebElement pickCountry(int index){
-        Select countryDrpdn= new Select(countryDropdown);
-         countryDrpdn.selectByIndex(index);
-         return countryDropdown;
-    }
+
 }

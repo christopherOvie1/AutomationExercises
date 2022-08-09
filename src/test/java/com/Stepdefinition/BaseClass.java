@@ -12,7 +12,9 @@ public class BaseClass {
     String baseURL=  "https://www.automationexercise.com/";
 
     public static WebDriver driver;
+
     @BeforeClass
+
   public  void setup() {
         driver = WebDriverManager.chromedriver().create();
         driver= new ChromeDriver();
@@ -27,4 +29,5 @@ public class BaseClass {
 //new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("wait")));
  //new WebDriverWait(driver, 10).until(ExpectedConditions.invisibilityOfElementLocated(By.id("wait")));
     }
+
 }

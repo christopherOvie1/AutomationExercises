@@ -8,15 +8,17 @@ public class VerifySubscriptionInCartPage_T0011 extends BaseClass{
 
     @Test
 public void verifySubscriptionInCartPage(){
+
+        String text = "SUBSCRIPTION";
         HomePage homePage = new HomePage(driver);
         CommonPage common = new CommonPage(driver);
         ProductPage product = new ProductPage(driver);
         ProductDetailsPage productDetails= new ProductDetailsPage(driver);
             NavigationPage navigation = new NavigationPage(driver);
-        //1  Navigate to url 'http://automationexercise.com'
+        //1 & 2  Navigate to url 'http://automationexercise.com'
         driver.get(baseURL);
 
-        //2  Verify that home page is visible successfully
+        //3. Verify that home page is visible successfully
         System.out.println(homePage.VerifyThatHomePageIsVisibleSuccessfully());
         Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
 
@@ -29,13 +31,14 @@ public void verifySubscriptionInCartPage(){
             //5 Verify text 'SUBSCRIPTION'
             System.out.println(homePage.verifyTextSUBSCRIPTION());
             String  actualText= homePage.verifyTextSUBSCRIPTION();
-            String expectedText= "SUBSCRIPTION";
+            String expectedText= text;
             Assert.assertEquals(actualText,expectedText,"wrong text");
 
-            //6  Enter email address in input and click arrow button
+            //6 & 7 Enter email address in input and click arrow button
 
             homePage.enterEmailAndNavigateToNextPage("abc@gmail.com");
 
+            //8. Verify success message 'You have been successfully subscribed!' is visible
             homePage.confirmMessageSent(driver);
 
 

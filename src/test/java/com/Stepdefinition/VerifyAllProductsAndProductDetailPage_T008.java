@@ -24,17 +24,26 @@ public class VerifyAllProductsAndProductDetailPage_T008 extends BaseClass {
         NavigationPage navigation = new NavigationPage(driver);
 
         //4 Verify user is navigated to ALL PRODUCTS page successfully
+        //4  4. Click on 'Products' button
         navigation.NavigateTo("Products");
+
+        //5. Verify user is navigated to ALL PRODUCTS page successfully
+        //5 5. Verify user is navigated to ALL PRODUCTS page successfully
         common.validateURL("products");
+
+
         //verify products
        product.getAllProductNames();
 
 
-        //6 Click on 'View Product' of first product
+        //7 Click on 'View Product' of first product
         product.selectFirstProduct();
 
-//7Verify that  detail is visible: product name, category, price, availability, condition, brand
-        productDetails.isProductDetailsVisible();
+        //8. User is landed to product detail page
+      common.validatePageURL("product_details/1");
+
+//9 Verify that  detail is visible: product name, category, price, availability, condition, brand
+        //productDetails.isProductDetailsVisible();
 
 
     }

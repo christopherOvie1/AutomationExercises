@@ -67,6 +67,15 @@ public void clickSubmitButton(){
 public boolean isSuccessMessagePresent(){
    return    successfulMessageText.isDisplayed();
 }
+//or
+
+    public boolean isSuccessMessagPresent(){
+       boolean successMessage =    successfulMessageText.isDisplayed();
+        return successMessage;
+    }
+
+
+
 public void clickBackButton(){
        backButton.click();
 }
