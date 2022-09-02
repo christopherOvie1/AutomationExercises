@@ -10,8 +10,12 @@ public class PlaceOrderRegisterBeforeCheckout_T0015 extends BaseClass{
     @Test
     public void placeOrderRegisterBeforeCheckout(){
 
+        String clothes = "Fancy Green Top";
         String day= "23",month="May",year="2020";
         String firstName= "chris", lastName="john",company = "abc ltd",addressLn1="4",addressLn2= "abc st",country = "Canada",state= "ottawa",city="test",zipcode="23432",mobileNumber="123455";
+        String nameOnCard ="John", cardNumber = "345",cvc="123",expirationMonth ="January",expirationYear ="2023";
+
+
         HomePage homePage = new HomePage(driver);
         NavigationPage navigation = new NavigationPage(driver);
         LoginPage loginPage = new LoginPage(driver);
@@ -21,6 +25,10 @@ public class PlaceOrderRegisterBeforeCheckout_T0015 extends BaseClass{
         AccountCreatedPage accountCreated= new AccountCreatedPage(driver);
         RegistrationPage register = new RegistrationPage(driver);
         ProductDetailsPage productDetails= new ProductDetailsPage(driver);
+        AddressPage address = new AddressPage(driver);
+        PaymentPage payment = new PaymentPage(driver);
+        OrderPage order = new OrderPage(driver);
+
 
         //2
         driver.get(baseURL);
@@ -54,12 +62,13 @@ public class PlaceOrderRegisterBeforeCheckout_T0015 extends BaseClass{
 
 // 7. Verify ' Logged in as username' at top
         loginPage.verifyThatLoggedusernameIsVisible();
-        // 8. Add products to cart
 
-        product.clickAnyxxxxx();
-
-        //9. Click 'Cart' button
+        //8 Add products to cart
+        common.selectAnyProductAndLogIntoProductDetails();
         productDetails.clickAddToCartButton();
+
+
+      //9. Click 'Cart' button
         product.clickViewCart();
 
         //10. Verify that cart page is displayed
@@ -68,21 +77,27 @@ public class PlaceOrderRegisterBeforeCheckout_T0015 extends BaseClass{
         //11. Click Proceed To Checkout
         cart.clickProceedToCheckoutButton();
 
-        //12. Verify Address Details and Review Your Order
-        String add= cart.confirmsBillingAddressSameAsDeliveryAddress();
-        System.out.println(add);
+        //12a. Verify Address Details and Review Your Order
+        boolean addressFound = address.validateAddressContents();
+        System.out.println("Address found is  " + addressFound);
+        Assert.assertTrue(addressFound, "Adrress found is wrong");
 
-        String v=  cart.validateReviewYourOrder();
-        System.out.println(v);
+        //12b order.reviewYourOrderText();
+        Assert.assertTrue(order.reviewYourOrderText());
+        System.out.println(order.reviewYourOrderText());
 
-        //13. Enter description in comment text area and click 'Place Order'
+        //12. Enter description in comment text area and click 'Place Order'
         cart.EnterDescriptionInCommentTextAreaAndClickPlaceOrder("no comment");
-//14. & 15 Enter payment details: Name on Card, Card Number, CVC, Expiration date
-        cart.enterEnterPaymentDetailsNameOnCardAndCardNumberCVCExpirationDate("john","123","34","Jan", "2020");
+
+ //14. & 15 Enter payment details: Name on Card, Card Number, CVC, Expiration date
+        payment.enterEnterPaymentDetailsNameOnCardAndCardNumberCVCExpirationDate(nameOnCard, cardNumber, cvc, expirationMonth, expirationYear);
 
 //16. Verify success message 'Your order has been placed successfully!'
-        String succMessage=  cart.verifySuccessMessage();
-        System.out.println(succMessage);
+        /*String actualSuccessMessage=  cart.verifySuccessMessage();
+        String expectedSuccessMessage= "Your order has been placed successfully!";
+        System.out.println(actualSuccessMessage);*/
+    //Assert.assertEquals(actualSuccessMessage,expectedSuccessMessage);
+
         //17. Click 'Delete Account' button
         navigation.NavigateTo("Delete Account");
     }

@@ -8,26 +8,36 @@ import org.testng.annotations.Test;
 public class AddToCartFromRecommendedItems_T0022 extends BaseClass{
 
     @Test
-    public void addToCartFromRecommendedItems(){
+    public void addToCartFromRecommendedItems() throws InterruptedException {
         HomePage homePage = new HomePage(driver);
-        NavigationPage navigation = new NavigationPage(driver);
-        CommonPage common = new CommonPage(driver);
         ProductPage product = new ProductPage(driver);
         ProductDetailsPage productDetails= new ProductDetailsPage(driver);
+        CartPage cart =new CartPage(driver);
 
 
         //1 &2 Navigate to url 'http://automationexercise.com'
         driver.get(baseURL);
 
-
-        //3  Verify that home page is visible successfully
-        System.out.println(homePage.VerifyThatHomePageIsVisibleSuccessfully());
-        Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
-
-        //4. Scroll down to footer
+        //3. Scroll down to footer
         homePage.ScrollDownToFooter();
+
+        //4. Verify 'RECOMMENDED ITEMS' are visible
       productDetails.validateRECOMMENDEDITEMSAreVisible("recommended items");
-        System.out.println(productDetails.validateRECOMMENDEDITEMSAreVisible("recommended items"));
+      System.out.println(productDetails.validateRECOMMENDEDITEMSAreVisible("recommended items"));
+
+      //5. Click on 'Add To Cart' on Recommended product
+        productDetails.clickRecommendedAddToCartButton();
+
+       // 6. Click on 'View Cart' button
+        product.clickviewCartLink();
+
+        //7. Verify that product is displayed in cart page
+        cart.verifyThatProductIsDisplayedInCartPage();
+        System.out.println(cart.verifyThatProductIsDisplayedInCartPage());
+
+        
+
+
 
 
     }

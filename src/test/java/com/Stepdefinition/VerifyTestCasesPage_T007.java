@@ -14,11 +14,10 @@ public class VerifyTestCasesPage_T007 extends BaseClass{
         NavigationPage navigation = new NavigationPage(driver);
         TestCasesPage testCases = new TestCasesPage(driver);
 
-        //1  Navigate to url 'http://automationexercise.com'
+        //1 & 2 Navigate to url 'http://automationexercise.com'
+        driver.get(baseURL);
 
-
-driver.navigate().to(baseURL);
-//3. Verify that home page is visible successfully
+        //3. Verify that home page is visible successfully
         System.out.println(homePage.VerifyThatHomePageIsVisibleSuccessfully());
         Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
 

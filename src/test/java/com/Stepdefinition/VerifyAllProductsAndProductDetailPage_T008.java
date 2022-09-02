@@ -23,13 +23,12 @@ public class VerifyAllProductsAndProductDetailPage_T008 extends BaseClass {
         //3  Click on 'Products' button
         NavigationPage navigation = new NavigationPage(driver);
 
-        //4 Verify user is navigated to ALL PRODUCTS page successfully
-        //4  4. Click on 'Products' button
+
+        //4  . Click on 'Products' button
         navigation.NavigateTo("Products");
 
         //5. Verify user is navigated to ALL PRODUCTS page successfully
-        //5 5. Verify user is navigated to ALL PRODUCTS page successfully
-        common.validateURL("products");
+        common.validatePageURL("products");
 
 
         //verify products

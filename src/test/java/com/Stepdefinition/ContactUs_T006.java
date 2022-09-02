@@ -18,32 +18,34 @@ public class ContactUs_T006 extends BaseClass{
        NavigationPage navigation = new NavigationPage(driver);
        ContactUsPage contactUs = new ContactUsPage(driver);
 
-//
+        // 1 & 2
        driver.get(baseURL);
 
+       //3. Verify that home page is visible successfully
+       Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
+
+       //4. Click on 'Contact Us' button
        navigation.NavigateTo("Contact us");
 
-     //3 Verify 'GET IN TOUCH' is visible
-       //System.out.println(contactUs.VerifyGETINTOUCHisVisible());
-       //Assert.assertTrue(contactUs.VerifyGETINTOUCHisVisible());
+     //5 Verify 'GET IN TOUCH' is visible
+       System.out.println(contactUs.VerifyGETINTOUCHisVisible());
+       Assert.assertTrue(contactUs.VerifyGETINTOUCHisVisible());
 
-       //2  Verify that home page is visible successfully
+       //  Verify that home page is visible successfully   no
        System.out.println(homePage.VerifyThatHomePageIsVisibleSuccessfully());
        Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
 
-       //4  Enter name, email, subject and message
-
+       //6 Enter name, email, subject and message
        contactUs.fillContactUsForm(name,email,subject,message);
+
        //8. Click 'Submit' button
        contactUs.clickSubmitButton();
        contactUs.AcceptAlerts(driver);
-       //ContactUsPage.acceptAlert(driver);
 
        // 10. Verify success message 'Success! Your details have been submitted successfully.' is visible
        boolean  successMessagDisplay= contactUs.isSuccessMessagPresent();
-               Assert.assertTrue(successMessagDisplay,"successmessage is displayed");
+       Assert.assertTrue(successMessagDisplay,"success Messag is not displayed");
       System.out.println(contactUs.isSuccessMessagePresent());
-     //  Assert.assertTrue(contactUs.isSuccessMessagePresent());
 
        // 11 Click 'Home' button and verify that landed to home page successfully
        contactUs.clickBackButton();

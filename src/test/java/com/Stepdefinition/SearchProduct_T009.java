@@ -13,38 +13,32 @@ public class SearchProduct_T009 extends BaseClass{
     public void verifySearchProduct(){
 
         String nameOfProduct="Blue Top";
-
         String nameOfItem= "Winter Top";
 
 
         HomePage homePage = new HomePage(driver);
         NavigationPage navigation = new NavigationPage(driver);
-        ContactUsPage contactUs = new ContactUsPage(driver);
         ProductPage product = new ProductPage(driver);
         CommonPage common = new CommonPage(driver);
         ProductDetailsPage productDetails= new ProductDetailsPage(driver);
 
-        //1 &2 Navigate to url 'http://automationexercise.com'
+        //1 & 2 Navigate to url 'http://automationexercise.com'
         driver.get(baseURL);
-
 
         //3  Verify that home page is visible successfully
         System.out.println(homePage.VerifyThatHomePageIsVisibleSuccessfully());
         Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
 
-        //4 & 5Verify user is navigated to ALL PRODUCTS page successfully
+        //4  Click on 'Products' button
         navigation.NavigateTo("Products");
 
         //5. Verify user is navigated to ALL PRODUCTS page successfully
         common.validatePageURL("products");
 
-
-       // product.(driver,addItems)
         //6 Enter product name in search input and click search button
        product.typeProductNameInSearchBar(nameOfProduct);
-      //  product.addItems(WebDriver driver, itemsNeeded);
 
-        //7  Verify 'SEARCHED PRODUCTS' is visible
+       //7  Verify 'SEARCHED PRODUCTS' is visible
         System.out.println(productDetails.VerifySEARCHEDPRODUCTSisVisible());
        Assert.assertTrue(productDetails.VerifySEARCHEDPRODUCTSisVisible());
 

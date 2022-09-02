@@ -18,8 +18,10 @@ public class ContactUsPage {
         this.driver=driver;
         PageFactory.initElements(driver,this);}
 
+    //webelements
     @FindBy(xpath="//h2[contains(.,'Get In Touch')]")
     WebElement getInTouchText;
+
     @FindBy(css="form[id='contact-us-form']>div[class='form-group col-md-6'] input[data-qa='name']")
     WebElement  contactUsNameField;
 
@@ -41,9 +43,13 @@ WebElement  submitButton;
     @FindBy(css="a[class='btn btn-success'] span")
     WebElement backButton;
 
+    //web actions
+
    public boolean VerifyGETINTOUCHisVisible(){
       return getInTouchText.isDisplayed();
+
    }
+
    public void fillContactUsForm(String name,String email,String subject,String message){
        contactUsNameField.sendKeys(name);
        contactUsEmailField.sendKeys(email);
@@ -59,7 +65,7 @@ public void clickSubmitButton(){
     }
        public static void acceptAlert(WebDriver driver){
 
-    //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+       //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     //wait.until(ExpectedConditions.alertIsPresent());
     Alert alert = driver.switchTo().alert();
     alert.accept();
@@ -74,12 +80,7 @@ public boolean isSuccessMessagePresent(){
         return successMessage;
     }
 
-
-
 public void clickBackButton(){
        backButton.click();
 }
-
-
-
 }

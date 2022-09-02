@@ -23,21 +23,24 @@ public class LoginUserWithincorrectEmailAndPasswords_T003 extends BaseClass{
         NavigationPage navigation = new NavigationPage(driver);
 
 
-        //2
+        // 1 & 2
         driver.get(baseURL);
 
         //3. Verify that home page is visible successfully
         Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
 
         //4 .Click on 'Signup / Login' button  //Signup / Login
-        /// homePage.goToLoginPage();
         navigation.NavigateTo("Signup / Login");
-      //  6 & 7  Enter incorrect email address and password
+
+        //5. Verify 'Login to your account' is visible
+        loginPage.verifyloginIntoAccountText();
+        Assert.assertTrue(loginPage.verifyloginIntoAccountText(),"Login to your account text not found");
+
+
+        //  6 & 7  Enter incorrect email address and password
         loginPage.loginAsValidUser(email,password);
 
         //8. Verify error 'Your email or password is incorrect!' is visible
-
-
         Assert.assertTrue(loginPage.isErrorMessageTextVisible());
     }
 }

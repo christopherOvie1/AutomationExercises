@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 import static org.openqa.selenium.support.How.*;
 
@@ -21,16 +22,11 @@ public class HomePage {
     public HomePage(WebDriver driver) {
        this.driver=driver;
         PageFactory.initElements(driver,this);}
-//li:nth-of-type(4) > a  //  //*[@text() = “Submit”]
-  //  @FindBy(xpath="//*[contains(text(),'You have been successfully subscribed!')]")
-//  "//p[contains(.,'Availability: In Stock')]")
-////div[@class='col-sm-6']//h2[contains(.,'Full-Fledged practice website for Automation Engineers')]
 
-
-    ////div[@id='slider-carousel']/div/div[1]/div[1]/h2[.='Full-Fledged practice website for Automation Engineers']
-
+    //webelements
     @FindBy(xpath="//div[@id='slider-carousel']/div/div[1]/div[1]/h2[.='Full-Fledged practice website for Automation Engineers']")
     WebElement  visibleTextOnScreen;
+
     @FindBy(css="li:nth-of-type(4) > a")
     WebElement  signUpLink;
 
@@ -65,19 +61,20 @@ public class HomePage {
     @FindBy(xpath="//a[contains(@href, '#Men')]")
     WebElement  menFilter;
 
+    @FindBy(xpath="//a[contains(.,'Polo')]")
+    WebElement  poloBrand;
 
 
 
+//web actions
     public boolean VerifyThatHomePageIsVisibleSuccessfully() {
-        return logoBanner.isDisplayed();}
+        return logoBanner.isDisplayed();
+    }
 
     public void goToLoginPage() {
        signUpLink.click();}
 
-
-
     public void ScrollDownToFooter(){
-
         JavascriptExecutor js = (JavascriptExecutor) driver;
         //Scroll down till the bottom of the page
         js.executeScript("window.scrollBy(500,document.body.scrollHeight)");
@@ -86,14 +83,13 @@ public class HomePage {
 
     public void scrollUpPageToTop(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-
         js.executeScript("window.scrollTo(0, 0)");
     }
+
     public String verifyTextSUBSCRIPTION(){
        return subscriptionText.getText();
+
     }
-
-
 
     public void enterEmailAndNavigateToNextPage(String email){
         emailID.sendKeys(email);
@@ -103,14 +99,13 @@ public class HomePage {
 public void clickMovingArrow()
 {
     movingArrow.click();
+
 }
-
-
 
 public void confirmMessageSent(WebDriver driver) {
 
         WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(5));
-    // invisibilityOfElementLocated condition
+    // try  invisibilityOfElementLocated condition
       w.until(ExpectedConditions.
               visibilityOfElementLocated(By.xpath("//*[contains(text(),'You have been successfully subscribed!')]")));
 
@@ -147,6 +142,24 @@ public void clickOnWomenCategory(){
     public String verifyThatUserIsNavigatedToThatCategoryPage(String text){
         WebElement categoryText=  driver.findElement(By.xpath("//h2[contains(.,'" + text + "')]"));
         return categoryText.getText();
+    }
+    //4. Verify that Brands are visible on left side bar
+    public boolean verifyThatBrandsAreVisibleOnLeftSideBar() {
+        boolean visibleProduct = true;
+        List<WebElement> visibleProducts = driver.findElements(By.xpath("//*[@class= 'nav nav-pills nav-stacked']//li"));
+        for (WebElement brands : visibleProducts) {
+            brands.isDisplayed();
+        }
+        return visibleProduct;
+    }
+
+    public void clickOnAnyBrandName(String section)
+    {
+        WebElement brand=  driver.findElement(By.xpath("//a[contains(.,'"  +  section  + "')]"));
+        brand.click();
+    }
+    public void clickPolo(){
+        poloBrand.click();
     }
 
 }

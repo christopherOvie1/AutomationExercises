@@ -14,16 +14,7 @@ public class NavigationPage {
         PageFactory.initElements(driver, this);
     }
 
-    //@FindBy(xpath="//h2[contains(.,'New User Signup!')]")
-    //WebElement newUserSignUpText;
-   /* @FindBy(xpath="//span[contains(.,'" + links + "')]")
-    WebElement homePagelinks;
-
-    public void navigateToNewPage(String link){
-        homePagelinks.click(link);
-    }*/
-
-
+//web actions
     public void NavigateTo(String section)
     {
         WebElement homePageLinks=  driver.findElement(By.xpath("//a[contains(.,'" + section + "')]"));

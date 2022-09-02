@@ -22,32 +22,30 @@ public class RegisterUserWithExistingEmail_T005 extends BaseClass{
         NavigationPage navigation = new NavigationPage(driver);
 
 
-        //2
+        //1 & 2
         driver.get(baseURL);
 
         //3. Verify that home page is visible successfully
         Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
 
         //4 .Click on 'Signup / Login' button  //Signup / Login
-        /// homePage.goToLoginPage();
         navigation.NavigateTo("Signup / Login");
 
         ///5.Verify 'New User Signup!' is visible
-        boolean h = loginPage.verifyNewUserSignupIsVisible();
-        System.out.println(h);
-        Assert.assertTrue(h);
+        boolean newUser = loginPage.verifyNewUserSignupIsVisible();
+        System.out.println(newUser);
+        Assert.assertTrue(newUser,"new user text is not visible");
 
         //6 Enter name and already registered email address
-loginPage.EnterNameAndAlreadyRegisteredEmailAddress(name,email);
-//7. Click 'Signup' button
+         loginPage.EnterNameAndAlreadyRegisteredEmailAddress(name,email);
 
+         //7. Click 'Signup' button
         loginPage.loginIntoRegistrationPage();
 
         //8. Verify error 'Email Address already exist!' is visible
   String actualEmailErrorMessage=loginPage.verifyEmailErrorMessageIsVisible();
   String expectedEmailErrorMessage= errorEmailMessage;
-
-  Assert.assertEquals(actualEmailErrorMessage,expectedEmailErrorMessage);
+  Assert.assertEquals(actualEmailErrorMessage,expectedEmailErrorMessage,"actualEmailErrorMessage,does not match expectedEmailErrorMessage");
 
 
 

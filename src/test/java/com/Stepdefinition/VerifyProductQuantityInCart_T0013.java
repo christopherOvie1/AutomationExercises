@@ -8,15 +8,15 @@ import org.testng.annotations.Test;
 public class VerifyProductQuantityInCart_T0013 extends BaseClass {
 
     @Test
-    public void verifyProductQuantityInCart_T0013(){
+    public void verifyProductQuantityInCart_T0013() {
 
-        String items= "Stylish Dress";
+        String items = "Stylish Dress";
+
         HomePage homePage = new HomePage(driver);
-        NavigationPage navigation = new NavigationPage(driver);
         ProductPage product = new ProductPage(driver);
-        ProductDetailsPage productDetails= new ProductDetailsPage(driver);
+        ProductDetailsPage productDetails = new ProductDetailsPage(driver);
         CommonPage common = new CommonPage(driver);
-        CartPage cart =new CartPage(driver);
+        CartPage cart = new CartPage(driver);
 
         //1 & 2 Navigate to url 'http://automationexercise.com'
         driver.get(baseURL);
@@ -26,17 +26,8 @@ public class VerifyProductQuantityInCart_T0013 extends BaseClass {
         Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
 
 
-
         //4. Click 'View Product' for any product on home page
-
-      //  common.validatePageURL("");
-        //product.clickParticularClothing();
-       // product.clickAnyxxxxx();
-      //  common.getDifferentProducts();
-        //exp
-     //  product.clickViewProductForAnyProductOnHomePage5("Blue Top");
-        common.selectAnyProductAndLogIntoProductDetailsPge("Blue Top");
-
+       common.selectAnyProductAndLogIntoProductDetails();
 
         //5. Verify product detail is opened
         common.validatePageurl("product_details");
@@ -51,14 +42,12 @@ public class VerifyProductQuantityInCart_T0013 extends BaseClass {
         product.clickViewCart();
 
         //9. Verify that product is displayed in cart page with exact quantity
-       // System.out.println(cart.verifythatproductisdisplayedincartpagewithexactquantity());
         System.out.println(cart.verifythatproductisdisplayedincartpagewithexactquantity());
-      String actualMatchedQuanity=cart.verifythatproductisdisplayedincartpagewithexactquantity();
-      String expectedMatchedQuanity = "4";
-      Assert.assertEquals(actualMatchedQuanity,expectedMatchedQuanity,actualMatchedQuanity+" does not match "+expectedMatchedQuanity);
+        String actualMatchedQuanity = cart.verifythatproductisdisplayedincartpagewithexactquantity();
+        String expectedMatchedQuanity = "4";
+        Assert.assertEquals(actualMatchedQuanity, expectedMatchedQuanity, actualMatchedQuanity + " does not match " + expectedMatchedQuanity);
 
     }
-
 
 
 }

@@ -19,24 +19,24 @@ public class LoginUserWithCorrectEmailAndPassword_T002 extends BaseClass{
         RegistrationPage register = new RegistrationPage(driver);
         NavigationPage navigation = new NavigationPage(driver);
 
-        //2
+        //1 & 2
         driver.get(baseURL);
 
         //3. Verify that home page is visible successfully
-        //Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
+        Assert.assertTrue(homePage.VerifyThatHomePageIsVisibleSuccessfully());
 
         //4 .Click on 'Signup / Login' button  //Signup / Login
-        /// homePage.goToLoginPage();
         navigation.NavigateTo("Signup / Login");
 
+        //5 Verify that 'Logged in as username' is visible
+        loginPage.verifyloginIntoAccountText();
+        Assert.assertTrue(loginPage.verifyloginIntoAccountText(),"Login to your account text not found");
+
+
+        //6 & 7  Enter correct email address and password
         loginPage.loginAsValidUser(email,password);
 
-        //6  Verify that 'Logged in as username' is visible
-
-       // loginPage.verifyThatLoggedusernameIsVisible();
-       // System.out.println(loginPage.verifyThatLoggedusernameIsVisible());
-       // Assert.assertTrue(loginPage.verifyThatLoggedusernameIsVisible());
-
+        //8. Verify that 'Logged in as username' is visible
    boolean status= loginPage.verifyThatLoggedusernameIsVisible();
    if(status){
        System.out.println("logged in user is visible");
@@ -47,8 +47,7 @@ public class LoginUserWithCorrectEmailAndPassword_T002 extends BaseClass{
         Assert.assertTrue(loginPage.verifyThatLoggedusernameIsVisible());
 
 
-        //9  Click 'Delete Account' button
-
+        //9. Click 'Delete Account' button
         loginPage.ClickDeleteAccountButton();
 
 

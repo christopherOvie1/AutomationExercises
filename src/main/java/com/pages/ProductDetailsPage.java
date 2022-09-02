@@ -5,19 +5,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.Random;
 
 public class ProductDetailsPage {
 
     public static WebDriver driver;
-
+  WebDriverWait wait;
     public ProductDetailsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-
+//web elements
     @FindBy(css = "div[class='single-products']")
     WebElement searchedProduct;
 
@@ -32,8 +34,6 @@ public class ProductDetailsPage {
 
     @FindBy(xpath = "//p[contains(.,'Availability: In Stock')]")
     WebElement productAvailability;
-////*[contains(text(),'(New)')]
-    // @FindBy(xpath="//div[2]/div/p[3]/text()")
 
     @FindBy(xpath = "//p[contains(.,'Condition: New')]")
     WebElement productCondition;
@@ -61,6 +61,11 @@ public class ProductDetailsPage {
     @FindBy(css = "h2[class='title text-center']")
     WebElement womenTopProductText;
 
+    @FindBy(css = "#button-review")
+    WebElement submitButton;
+
+
+
 
 
     public void isProductDetailsVisible() {
@@ -85,7 +90,7 @@ public class ProductDetailsPage {
         System.out.println(productBrand.getText());
     }
 
-
+//web actions
     public boolean VerifySEARCHEDPRODUCTSisVisible() {
         return searchedProduct.isDisplayed();
     }
@@ -101,9 +106,6 @@ public class ProductDetailsPage {
     }
 
     public String validateRECOMMENDEDITEMSAreVisible(String section) {
-        // Reporting.Log.AppendLine("Navigating to " + section);
-        //WebElement sectionSelector = By.XPath("//span[contains(.,'" + section + "')]");
-        // Interactions.Click(sectionSelector);
         WebElement homePageElement = driver.findElement(By.xpath("//h2[contains(.,'" + section + "')]"));
         return homePageElement.getText();
     }
@@ -118,8 +120,6 @@ public class ProductDetailsPage {
           }*/
     //}
     public void getAllSimilarProductNames() {
-
-
         List<WebElement> itemNeeded = driver.findElements(By.xpath("//p[contains(.,'Top')]"));
         boolean contentTypeAllMatch = true;
         // Printing all similar items Without stream
@@ -134,6 +134,18 @@ public class ProductDetailsPage {
 
     public String confirmTextWOMENTOPSPRODUCTS(){
       return  womenTopProductText.getText();
+    }
+    public void clickSubmitButton(){
+        submitButton.click();
+    }
+
+
+    public void clickRecommendedAddToCartButton(){
+
+        List<WebElement> recommendedAddToClick = driver.findElements(By.xpath("//div[@id='recommended-item-carousel']//a[@class='btn btn-default add-to-cart']"));
+        Random rand= new Random();
+     int randomRecommendedAddToClick = rand.nextInt(recommendedAddToClick.size());//getting a random value between 0 and size
+        recommendedAddToClick.get(randomRecommendedAddToClick).click();
     }
 
 }

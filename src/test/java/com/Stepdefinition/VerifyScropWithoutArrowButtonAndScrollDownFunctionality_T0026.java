@@ -11,13 +11,8 @@ public class VerifyScropWithoutArrowButtonAndScrollDownFunctionality_T0026 exten
     @Test
     public void VerifyScropUsingArrowButtonAndScrollDownFunctionality(){
         String text = "SUBSCRIPTION";
+
         HomePage homePage = new HomePage(driver);
-        //  CommonPage common = new CommonPage(driver);
-        NavigationPage navigation = new NavigationPage(driver);
-        // ContactUsPage contactUs = new ContactUsPage(driver);
-        LoginPage loginPage = new LoginPage(driver);
-        // ProductPage product = new ProductPage(driver);
-        //  ProductDetailsPage productDetails= new ProductDetailsPage(driver);
 
 
         //1 &2 Navigate to url 'http://automationexercise.com'
@@ -30,8 +25,9 @@ public class VerifyScropWithoutArrowButtonAndScrollDownFunctionality_T0026 exten
         System.out.println(homePage.verifyTextSUBSCRIPTION());
         String  actualText= homePage.verifyTextSUBSCRIPTION();
         String expectedText= text;
-        Assert.assertEquals(actualText,expectedText,"wrong text");
-//6. Scroll up page to top
+        Assert.assertEquals(actualText,expectedText,"actualText does not match expected text");
+
+         //6. Scroll up page to top
         homePage.scrollUpPageToTop();
 
 

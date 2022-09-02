@@ -13,10 +13,11 @@ public  TestCasesPage(WebDriver driver){
     this.driver = driver;
     PageFactory.initElements(driver, this);
 }
-
+//web elements
     @FindBy(css="h2[class='title text-center']>b")
     WebElement testCasesText;
 
+//web actions
 public boolean isTestCasePageNavigatedToSuccessfully(){
     return  testCasesText.isDisplayed();
 }

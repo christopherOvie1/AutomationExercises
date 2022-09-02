@@ -21,6 +21,7 @@ public class RegistrationPage {
         PageFactory.initElements(driver, this);
     }
 
+    //webelements
     @FindBy(xpath = "//b[text() = 'Enter Account Information']")
     WebElement EnterAccountInformationText;
 
@@ -80,27 +81,27 @@ public class RegistrationPage {
         for (int i = 0; i < radioButtons.size(); i++) {
             WebElement rad = radioButtons.get(i);
             String radio = rad.getAttribute("value");
-            if (radio.equalsIgnoreCase("Mr")) {
+            if (radio.equalsIgnoreCase("Mrs")) {
                 rad.click();
                 break;
             }
         }
     }
-
+//investigate this
+    public void radioButtonNew(){
+        List<WebElement> radioButtonsNew=driver.findElements(By.cssSelector("input[type='radio']"));
+        for(int i=0;i<radioButtonsNew.size();i++){
+            WebElement Iradio =   radioButtonsNew.get(1);
+            Iradio.click();
+        }
+    }
     public boolean VerifyThatENTERACCOUNTINFORMATIONisVisible() {
      return    EnterAccountInformationText.isDisplayed();
     }
     public void enterPassword(String password) {
         passwordButton.sendKeys(password);
     }
-/*public void selectDay(String days){
-    WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(5));
-    w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@id='days']")));
 
-    Select day = new Select(dayDropdown);
-    day.selectByVisibleText(days);
-
-}*/
     public void selectDateOfBirth(String days,String months,String years) {
         Select day = new Select(dayDropdown);
         day.selectByValue(days);
@@ -108,7 +109,6 @@ public class RegistrationPage {
         month.selectByVisibleText(months);
         Select year = new Select(yearDropdown);
         year.selectByValue(years);
-
     }
 
     public void enterAddressInfo(String firstNm,String lastNm,String company,String address1,String address2,String countries,String state,String city,String zipcode,String mobileNumber){
@@ -124,9 +124,6 @@ public class RegistrationPage {
         zipcodeField.sendKeys(zipcode);
         mobileNumberField.sendKeys(mobileNumber);
         createAccountButton.click();
-
-
     }
-
 
 }

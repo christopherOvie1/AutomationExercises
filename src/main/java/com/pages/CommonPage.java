@@ -11,92 +11,103 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class CommonPage {
     public static WebDriver driver;
 
     public CommonPage(WebDriver driver) {
-        this.driver=driver;
-        PageFactory.initElements(driver,this);}
-
-    public boolean validatePageURL(String pageName) {;
-        return  driver.getCurrentUrl().endsWith(pageName);
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-        public boolean validatePageurl(String urlPart) {;
-        return  driver.getCurrentUrl().contains(urlPart);
+    public boolean validatePageURL(String pageName) {
+        ;
+        return driver.getCurrentUrl().endsWith(pageName);
     }
-    @FindBy(css ="div[class='productinfo text-center'] p")
+
+    public boolean validatePageurl(String urlPart) {
+        ;
+        return driver.getCurrentUrl().contains(urlPart);
+    }
+
+    @FindBy(css = "div[class='productinfo text-center'] p")
     List<WebElement> viewAllItems;
 
     public void selectAnyProductAndLogIntoProductDetailsPge(String ele) {
 
-        String itemsNeeded[]={"Blue Top","Men Tshirt","Sleeveless Dress","Stylish Dress","Winter Top"};
-        List <String>myItemsNeededInList=Arrays.asList(itemsNeeded);
+        String itemsNeeded[] = {"Blue Top", "Men Tshirt", "Sleeveless Dress", "Stylish Dress", "Winter Top"};
+        List<String> myItemsNeededInList = Arrays.asList(itemsNeeded);
         List<WebElement> allProductsButton = viewAllItems;
-    int f=    viewAllItems.size();
+        int f = viewAllItems.size();
 
         for (int i = 0; i < allProductsButton.size(); i++) {
             allProductsButton.get(i).getText();
         }
-       if (myItemsNeededInList.contains(ele)){
-           //selecting the fifth product
-           driver.findElements(By.xpath("//ul[@class='nav nav-pills nav-justified']/li")).get(4).click();
-          // driver.findElement(By.xpath("//ul[@class='nav nav-pills nav-justified']/li")).click();
+        if (myItemsNeededInList.contains(ele)) {
+            //selecting the fifth product
+            driver.findElements(By.xpath("//ul[@class='nav nav-pills nav-justified']/li")).get(4).click();
+            // driver.findElement(By.xpath("//ul[@class='nav nav-pills nav-justified']/li")).click();
         }
     }
-////div[@class='col-sm-6']//h2[contains(.,'Full-Fledged practice website for Automation Engineers')]
-    public boolean validateURL(String url) {
-       return driver.getCurrentUrl().endsWith(url);
+
+    public void selectAnyProductAndLogIntoProductDetails() {
+        List<WebElement> allProductsButton = viewAllItems;
+        for (int i = 0; i < allProductsButton.size(); i++) {
+            allProductsButton.get(i).getText();
+            driver.findElements(By.xpath("//ul[@class='nav nav-pills nav-justified']/li")).get(26).click();
+        }
     }
 
-   public void AddtoCartJourneys() throws InterruptedException {
-       String[] additems = {"Blue Top", "Men Tshirt"};
-       //Get all your products in a list
+    public void selectRandomProduct() {
 
-       List<WebElement> allProduct=driver.findElements(By.cssSelector("div[class='productinfo text-center'] p"));
-//Get all Products count
-     int products_count =  allProduct.size();
-       System.out.println("products_count is "+products_count );
-       //iterate through products list
-       for(int i=0; i<products_count;i++) {
-       String x=    allProduct.get(i).getText();
-           System.out.println(x);
-}
-  /*     if(products_count == 0){
-   /* int a=0;
-    while(a<3){
-       // a++;
-        //click add to cart element
-        driver.findElement(By.cssSelector(".choose > .nav.nav-justified.nav-pills  a")).click();
-        //a=3;
-        a++;  */
-           driver.findElement(By.cssSelector(".choose > .nav.nav-justified.nav-pills  a")).click();
-          // System.out.println("Blue Top");
-    //   }
-           //click add to cart element if product found in index
-       }
+        // Find and click on a random product
+        List<WebElement> allProducts = viewAllItems;
+        Random rand = new Random();
+        int randomProduct = rand.nextInt(allProducts.size());
+        allProducts.get(randomProduct).click();
+        driver.findElements(By.xpath("//ul[@class='nav nav-pills nav-justified']/li")).get(26).click();
 
 
-   public  void getDifferentProducts() {
+    }
+
+
+    public boolean validateURL(String url) {
+        return driver.getCurrentUrl().endsWith(url);
+    }
+
+
+    public void getDifferentProducts() {
         int j = 0;
-       String[] expectedProducts = {"Blue Top", "Men Tshirt", "Sleeveless Dress"};
-        List<WebElement> allProductName=driver.findElements(By.cssSelector("div[class='productinfo text-center'] p"));
-       // ArrayList<String> obj = new ArrayList<String>(Arrays.asList(expectedProducts));
+        String[] expectedProducts = {"Blue Top", "Men Tshirt", "Sleeveless Dress"};
+        List<WebElement> allProductName = driver.findElements(By.cssSelector("div[class='productinfo text-center'] p"));
+        // ArrayList<String> obj = new ArrayList<String>(Arrays.asList(expectedProducts));
         //System.out.println("Elements Present in ArrayList are :"+obj);
 
-        for(int i = 0;i<allProductName.size();i++){
+        for (int i = 0; i < allProductName.size(); i++) {
             j++;
-            String name=   allProductName.get(i).getText();
+            String name = allProductName.get(i).getText();
 
-            if(name.contains("Blue Top")){
+            if (name.contains("Sleeveless Dress")) {
                 driver.findElement(By.cssSelector(".choose > .nav.nav-justified.nav-pills  a")).click();
+                j++;
             }
-
             break;
-
         }
     }
 
+    //function to get random products
+    public void clickRandomProducts() {
+
+        List<WebElement> recommendedAddToClick = driver.findElements(By.xpath("//ul[@class='nav nav-pills nav-justified']/li"));
+        Random rand = new Random();
+        int randomRecommendedAddToClick = rand.nextInt(recommendedAddToClick.size());//getting a random value between 0 and size
+        recommendedAddToClick.get(randomRecommendedAddToClick).click();
+    }
 
 }
+
+
+
+
+

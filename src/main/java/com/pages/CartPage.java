@@ -20,11 +20,10 @@ public class CartPage {
     public CartPage(WebDriver driver) {
         this.driver=driver;
         wait= new WebDriverWait(driver, Duration.ofSeconds(15));
-        PageFactory.initElements(driver,this)
+        PageFactory.initElements(driver,this);
+    }
 
-        ;}
-    //disabled
-
+//web elements
     @FindBy(css="button[class='disabled']")
     WebElement exactQuantity;
 
@@ -40,9 +39,6 @@ public class CartPage {
     @FindBy(xpath="//div[@class='col-xs-12 col-sm-6'][1]")
     WebElement deliveryAddress;
 
-    @FindBy(xpath="//div[@class='col-xs-12 col-sm-6']")
-    WebElement addresses;
-
     @FindBy(xpath="//div[@class='col-xs-12 col-sm-6'][1]")
     WebElement billingAddress;
 
@@ -52,64 +48,24 @@ public class CartPage {
     @FindBy(xpath="//*[@name='message']")
     WebElement commentSection;
 
-    //a[contains(.,'Place Order')]
-
     @FindBy(xpath="//a[contains(.,'Place Order')]")
     WebElement placeOrderButton;
 
-    @FindBy(css="input[name='name_on_card']")
-    WebElement nameOfCard;
-
-    @FindBy(css="input[name='card_number']")
-    WebElement cardNumber;
-
-    @FindBy(css="input[name='cvc']")
-    WebElement cvcNumber;
-
-    @FindBy(css="input[name='expiry_month']")
-    WebElement monthExpiration;
-
-    @FindBy(css="input[name='expiry_year']")
-    WebElement yearExpiration;
-
-    @FindBy(id="submit")
-    WebElement payAndConfirmOrder;
-
     @FindBy(xpath="//p[contains(.,'Congratulations! Your order has been confirmed!')]")
+   // @FindBy(xpath="//div[contains(.,'Your order has been placed successfully!')]//div[@class='alert-success alert']")
     WebElement successMessage;
 
     @FindBy(css="i[class='fa fa-times']")
     WebElement xButton;
 
-
-
     @FindBy(xpath="//span[@id='empty_cart']//b[.='Cart is empty!']")
     WebElement productRemovedText;
 
-    //b
-    @FindBy(xpath="//ul[@id='address_delivery']/li[@class='address_firstname address_lastname']")
-    WebElement firsNameAddressDelivery;
-
-    @FindBy(xpath="//ul[@id='address_delivery']/li[@class='address_firstname address_lastname']")
-    WebElement firsNameAddressDeliveryAndBilling;
-
-    @FindBy(xpath="//ul[@id='address_delivery']/li[@class='address_city address_state_name address_postcode']")
-    WebElement cityAndPostCodeAddressDelivery;
+    @FindBy(css = "td[class='cart_description']")
+    WebElement displayedProduct;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//actions
    public boolean verifyBothProductsAreAddedToCart() {
 
         List<WebElement> bothAddedProduct = driver.findElements(By.xpath("//tbody/tr"));
@@ -135,22 +91,12 @@ public String verifythatproductisdisplayedincartpagewithexactquantity(){
     return   exactQuantity.getText();
     }
 
-    public String confirmsBillingAddressSameAsDeliveryAddress(){
-     deliveryAddress.getText();
-    return billingAddress.getText();
-      // deliveryAddress.sendKeys(DeliverAdd);
-    }
+
     public void verifyBillingAddress(){
        billingAddress.getText();
 
     }
 
-    public CartPage verifyDeliveryAddress2(String user1,String user2){
-firsNameAddressDelivery.getText().equalsIgnoreCase(user1);
-        cityAndPostCodeAddressDelivery.getText().equalsIgnoreCase(user2);
-        return this;
-
-    }
     public void verifyDeliveryAddress(){
        deliveryAddress.getText();
     }
@@ -190,18 +136,13 @@ public void EnterDescriptionInCommentTextAreaAndClickPlaceOrder(String message){
     placeOrderButton.click();
 }
 
-public void enterEnterPaymentDetailsNameOnCardAndCardNumberCVCExpirationDate(String name,String cardNum,String cvc,String months,String yr){
-nameOfCard.sendKeys(name);
-cardNumber.sendKeys(cardNum);
-    cvcNumber.sendKeys(cvc);
-    monthExpiration.sendKeys(months);
-    yearExpiration.sendKeys(yr);
-    payAndConfirmOrder.click();
-}
 public String verifySuccessMessage(){
-       return successMessage.getText();
+      return   successMessage.getText();
 }
 
+public void verifySuccessfulText(){
+        //successMessage.isDisplayed();
+}
 public void  ClickXButtonCorrespondingToParticularProduct(){
   //  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
   //  WebElement elem_gplay_btn = wait.until(ExpectedConditions.elementToBeClickable(xButton));
@@ -216,8 +157,7 @@ public String verifyThatProductIsRemovedFromTheCart(){
     WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
  String f= wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='empty_cart']//b[.='Cart is empty!']"))).getText();
 return f;
-   // System.out.println(productRemovedText.getText());
-     //  wait1.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//span[@id='empty_cart']//b[.='Cart is empty!']"))).
+
 }
 
 public String vaidateRemoved(){
@@ -232,8 +172,19 @@ public  String  verifyRemoval(){
    return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='empty_cart']//b[.='Cart is empty!']"))).getText();
 }
 
-public void verifyAddressDelivery(String user1){
-    firsNameAddressDelivery.getText().equalsIgnoreCase(user1);
+    public  String verifySuccessMessageThankYouForYourReview(){
+return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class='form-row']"))).getText();
     }
 
+    public String verifyThatProductIsDisplayedInCartPage(){
+       String c=displayedProduct.getText();
+        System.out.println(c);
+        return c;
+    }
+
+    public String verifySuccessfulMessageText(){
+        String d = successMessage.getText();
+        System.out.println(d);
+        return d;
+    }
 }
