@@ -51,9 +51,11 @@ public class CartPage {
     @FindBy(xpath="//a[contains(.,'Place Order')]")
     WebElement placeOrderButton;
 
-    @FindBy(xpath="//p[contains(.,'Congratulations! Your order has been confirmed!')]")
+    @FindBy(xpath="//div[contains(.,'Your order has been placed successfully!')]")
+   // @FindBy(xpath="//p[contains(.,'Congratulations! Your order has been confirmed!')]")
    // @FindBy(xpath="//div[contains(.,'Your order has been placed successfully!')]//div[@class='alert-success alert']")
     WebElement successMessage;
+    //div[contains(.,'Your order has been placed successfully!')]
 
     @FindBy(css="i[class='fa fa-times']")
     WebElement xButton;
@@ -137,7 +139,9 @@ public void EnterDescriptionInCommentTextAreaAndClickPlaceOrder(String message){
 }
 
 public String verifySuccessMessage(){
-      return   successMessage.getText();
+    // return   successMessage.getText();
+    return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(.,'Your order has been placed successfully!')]//div[@class='alert-success alert']"))).getText();
+
 }
 
 public void verifySuccessfulText(){
@@ -154,7 +158,7 @@ public String verifyThatProductIsRemovedFromTheCart(){
  //  String x=  productRemovedText.getText();
  // return x;
 
-    WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
+    WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
  String f= wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='empty_cart']//b[.='Cart is empty!']"))).getText();
 return f;
 

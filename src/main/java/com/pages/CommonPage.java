@@ -34,6 +34,9 @@ public class CommonPage {
     @FindBy(css = "div[class='productinfo text-center'] p")
     List<WebElement> viewAllItems;
 
+    @FindBy(css = ".choose > .nav.nav-justified.nav-pills  a")
+    List<WebElement> viewProductLink;
+
     public void selectAnyProductAndLogIntoProductDetailsPge(String ele) {
 
         String itemsNeeded[] = {"Blue Top", "Men Tshirt", "Sleeveless Dress", "Stylish Dress", "Winter Top"};
@@ -58,6 +61,13 @@ public class CommonPage {
             driver.findElements(By.xpath("//ul[@class='nav nav-pills nav-justified']/li")).get(26).click();
         }
     }
+
+ /*   public void selectAnyProductAndLogIntoProduc(int k) {
+        List<WebElement> allProductsButtons = viewProductLink;
+        for (int k=0;k<allProductsButtons.size();k++){
+            allProductsButtons.get(k).click();
+        }
+    }*/
 
     public void selectRandomProduct() {
 

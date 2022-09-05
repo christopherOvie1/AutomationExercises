@@ -23,15 +23,17 @@ public class ProductDetailsPage {
     @FindBy(css = "div[class='single-products']")
     WebElement searchedProduct;
 
+    // //div[@class='row']//h2[.='Blue Top']
     @FindBy(css = "div[class='product-information']>h2")
     WebElement productName;
 
-    @FindBy(css = "div[class='product-information']>p")
+    @FindBy(xpath = "//div[@class='row']//p[.='Category: Women > Tops']")
     WebElement productCategory;
 
     @FindBy(css = "span > span")
     WebElement productPrice;
 
+    ////b[contains(text(),'Availability:')]
     @FindBy(xpath = "//p[contains(.,'Availability: In Stock')]")
     WebElement productAvailability;
 
@@ -148,4 +150,13 @@ public class ProductDetailsPage {
         recommendedAddToClick.get(randomRecommendedAddToClick).click();
     }
 
+    public boolean verifyThatProductDetailIsVisibleProductNameCategoryPriceAvailabilityConditionBrand(){
+        boolean  pName=   productName.isDisplayed();
+        boolean pCategory=  productCategory.isDisplayed();
+      boolean pBrand=  productBrand.isDisplayed();
+      boolean pCondition=  productCondition.isDisplayed();
+        boolean  pPrice= productPrice.isDisplayed();
+        boolean  pAvailability= productAvailability.isDisplayed();
+        return (pName && pCategory && pBrand &&pCondition && pPrice && pAvailability);
+    }
 }

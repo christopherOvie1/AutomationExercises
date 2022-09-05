@@ -14,6 +14,7 @@ public class PlaceOrderRegisterWhileCheckout_T0014 extends BaseClass{
         String day= "23",month="May",year="2020";
         String firstName= "chris", lastName="john",company = "abc ltd",addressLn1="4",addressLn2= "abc st",country = "Canada",state= "ottawa",city="test",zipcode="23432",mobileNumber="123455";
         String nameOnCard ="John", cardNumber = "345",cvc="123",expirationMonth ="January",expirationYear ="2023";
+        String gender = "Mr";
 
         HomePage homePage = new HomePage(driver);
         NavigationPage navigation = new NavigationPage(driver);
@@ -58,7 +59,7 @@ public class PlaceOrderRegisterWhileCheckout_T0014 extends BaseClass{
         //9b Fill all details in Signup and create account
         loginPage.loginIntoRegistrationPage();
 
-        register.getRadioButtons();
+        address.clickMrOrMrsRadioButton(gender);
         register.enterPassword("ahh65bgfd");
 
         register.selectDateOfBirth(day,month,year);
@@ -100,8 +101,9 @@ public class PlaceOrderRegisterWhileCheckout_T0014 extends BaseClass{
         payment.enterEnterPaymentDetailsNameOnCardAndCardNumberCVCExpirationDate(nameOnCard, cardNumber, cvc, expirationMonth, expirationYear);
 
         //18. Verify success message 'Your order has been placed successfully!'
-     // String succMessage=  cart.verifySuccessMessage();
-     //   System.out.println(succMessage);
+       // Thread.sleep(5000);
+      String succMessage=  cart.verifySuccessMessage();
+       System.out.println(succMessage);
 
      //19. Click 'Delete Account' button
         navigation.NavigateTo("Delete Account");

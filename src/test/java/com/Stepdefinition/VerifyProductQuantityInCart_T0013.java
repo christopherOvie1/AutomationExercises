@@ -27,7 +27,7 @@ public class VerifyProductQuantityInCart_T0013 extends BaseClass {
 
 
         //4. Click 'View Product' for any product on home page
-       common.selectAnyProductAndLogIntoProductDetails();
+      common.selectAnyProductAndLogIntoProductDetails();
 
         //5. Verify product detail is opened
         common.validatePageurl("product_details");

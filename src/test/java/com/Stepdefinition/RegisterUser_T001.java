@@ -13,6 +13,7 @@ public class RegisterUser_T001 extends BaseClass {
         String title1 = "Nrs", title2 = "Mr";
         String firstName = "chris", lastName = "john", company = "abc ltd", addressLn1 = "4", addressLn2 = "abc st", country = "Canada", state = "ottawa", city = "test", zipcode = "23432", mobileNumber = "123455";
         String password = "test123";
+        String gender = "Mr";
 
 
         HomePage homePage = new HomePage(driver);
@@ -58,8 +59,12 @@ public class RegisterUser_T001 extends BaseClass {
 
 //9  Fill details: Title, Name, Email, Password, Date of birth
         //address.clickRad();
-        address.clickEitherRadioButtons();
+       // address.clickEitherRadioButtons();
+        //address.clickRadio("Mr");
+
+        address.clickMrOrMrsRadioButton(gender);
         register.enterPassword(password);
+
         register.selectDateOfBirth(day, month, year);
         register.enterAddressInfo(firstName, lastName, company, addressLn1, addressLn2, country, state, city, zipcode, mobileNumber);
 

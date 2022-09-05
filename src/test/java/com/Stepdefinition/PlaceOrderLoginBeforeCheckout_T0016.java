@@ -56,10 +56,10 @@ public class PlaceOrderLoginBeforeCheckout_T0016 extends BaseClass{
        cart.clickProceedToCheckoutButton();
 
 //11. Verify Address Details and Review Your Order
-       String add= cart.confirmsBillingAddressSameAsDeliveryAddress();
+      /* String add= cart.confirmsBillingAddressSameAsDeliveryAddress();
        System.out.println(add);
        String v=  cart.validateReviewYourOrder();
-       System.out.println(v);
+       System.out.println(v);*/
 
        // 12. Enter description in comment text area and click 'Place Order'
        cart.EnterDescriptionInCommentTextAreaAndClickPlaceOrder("no comment");

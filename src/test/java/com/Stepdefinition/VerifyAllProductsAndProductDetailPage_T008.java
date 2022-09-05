@@ -42,8 +42,7 @@ public class VerifyAllProductsAndProductDetailPage_T008 extends BaseClass {
       common.validatePageURL("product_details/1");
 
 //9 Verify that  detail is visible: product name, category, price, availability, condition, brand
-        //productDetails.isProductDetailsVisible();
-
+        productDetails.verifyThatProductDetailIsVisibleProductNameCategoryPriceAvailabilityConditionBrand();
 
     }
 

@@ -42,6 +42,30 @@ WebElement fullnameAddressBilling;
     @FindBy(xpath="//ul[@id='address_delivery']/li[7]")
     WebElement city;
 
+    @FindBy(id="id_gender1")
+    WebElement radioMr;
+
+    @FindBy(id="id_gender2")
+    WebElement radioMrs;
+
+
+    public void clickRadio(String radioChoice){
+        switch(radioChoice.toLowerCase()){
+            case "Mr": radioMr.click();
+            break;
+            case "Mrs": radioMrs.click();
+            break;
+        }
+
+    }
+public void clickMrOrMrsRadioButton(String userSelection){
+   if(userSelection.equalsIgnoreCase("Mr")){
+       radioMr.click();
+   }
+   else if (userSelection.equalsIgnoreCase("Mrs")){
+    radioMrs.click();
+   }
+}
     public boolean checkAddress(String componentName)
     {
         boolean checkElementDisplay = true;
@@ -64,6 +88,8 @@ WebElement fullnameAddressBilling;
 
         }
     }
+
+
 
     public void clickEitherRadioButtons() {
         List<WebElement> radioButton = driver.findElements(By.cssSelector("input[type='radio']"));
