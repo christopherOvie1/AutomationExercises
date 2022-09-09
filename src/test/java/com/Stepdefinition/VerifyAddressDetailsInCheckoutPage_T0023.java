@@ -9,8 +9,11 @@ public class VerifyAddressDetailsInCheckoutPage_T0023 extends BaseClass{
     @Test
     public void verifyAddressDetailsInCheckoutPage() throws InterruptedException {
 
+        //Test data
         String day= "23",month="May",year="2020";
         String firstName= "chris", lastName="john",company = "abc ltd",addressLn1="4",addressLn2= "abc st",country = "Canada",state= "ottawa",city="test",zipcode="23432",mobileNumber="123455";
+
+
         HomePage homePage = new HomePage(driver);
         NavigationPage navigation = new NavigationPage(driver);
         ProductDetailsPage productDetails= new ProductDetailsPage(driver);
@@ -20,7 +23,6 @@ public class VerifyAddressDetailsInCheckoutPage_T0023 extends BaseClass{
         AddressPage address= new AddressPage(driver);
         AccountCreatedPage accountCreated= new AccountCreatedPage(driver);
         RegistrationPage register = new RegistrationPage(driver);
-
         LoginPage loginPage = new LoginPage(driver);
 
 

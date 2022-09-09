@@ -23,6 +23,7 @@ public class BaseClass {
        //driver.manage().timeouts().implicitlyWait(5l,TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().deleteAllCookies();
         //driver.manage().timeouts().pageLoadTimeout(5)
       //  WebDriverWait wait = new WebDriverWait(driver, 30);
       //  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("csspath")));

@@ -10,6 +10,8 @@ public class VerifyScropWithoutArrowButtonAndScrollDownFunctionality_T0026 exten
 
     @Test
     public void VerifyScropUsingArrowButtonAndScrollDownFunctionality(){
+
+        //Test data
         String text = "SUBSCRIPTION";
 
         HomePage homePage = new HomePage(driver);

@@ -12,6 +12,8 @@ public class ContactUs_T006 extends BaseClass{
    @Test
 
     public void navigateToContactUsPage() {
+
+       //Test data
  String name= "chris",email="abc@gmail.com",subject="math",message="please confirm";
 
        HomePage homePage = new HomePage(driver);

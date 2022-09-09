@@ -9,8 +9,10 @@ public class RegisterUser_T001 extends BaseClass {
 
     @Test
     public void registerTest() throws InterruptedException {
+
+        // Test data
         String day = "23", month = "May", year = "2020";
-        String title1 = "Nrs", title2 = "Mr";
+        String title1 = "Mrs", title2 = "Mr";    //ununsed
         String firstName = "chris", lastName = "john", company = "abc ltd", addressLn1 = "4", addressLn2 = "abc st", country = "Canada", state = "ottawa", city = "test", zipcode = "23432", mobileNumber = "123455";
         String password = "test123";
         String gender = "Mr";
@@ -58,14 +60,14 @@ public class RegisterUser_T001 extends BaseClass {
 
 
 //9  Fill details: Title, Name, Email, Password, Date of birth
-        //address.clickRad();
-       // address.clickEitherRadioButtons();
-        //address.clickRadio("Mr");
-
         address.clickMrOrMrsRadioButton(gender);
         register.enterPassword(password);
-
         register.selectDateOfBirth(day, month, year);
+
+       // 10.& 11 Select checkbox 'Sign up for our newsletter!' & 11
+        register.selectCheckboxes();
+
+        //12 & 13  Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
         register.enterAddressInfo(firstName, lastName, company, addressLn1, addressLn2, country, state, city, zipcode, mobileNumber);
 
 //14. Verify that 'ACCOUNT CREATED!' is visible
@@ -78,6 +80,7 @@ public class RegisterUser_T001 extends BaseClass {
 
         //16. Verify that 'Logged in as username' is visible
         loginPage.verifyThatLoggedusernameIsVisible();
+        Assert.assertTrue(loginPage.verifyThatLoggedusernameIsVisible(),"name not visible");
 
         //17. Click 'Delete Account' button
         loginPage.ClickDeleteAccountButton();

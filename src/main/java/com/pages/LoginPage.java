@@ -38,7 +38,7 @@ public class LoginPage {
     @FindBy(xpath="//form[@action='/signup']/button[@type='submit']")
     WebElement  signUpButton;
 
-    @FindBy(css="a[href*='delete']")
+    @FindBy(css="li:nth-of-type(10) > a")
     WebElement  loggedInUser;
 
     @FindBy(css="a[href*='delete']")
@@ -95,7 +95,13 @@ public class LoginPage {
     public boolean verifyThatLoggedusernameIsVisible(){
         return loggedInUser.isDisplayed();
     }
+public void validateLoggedUsername(String name){
+    loggedInUser.getText().toLowerCase().equals(name);
+}
 
+    public String validLogername(){
+      return   loggedInUser.getText();
+    }
     public boolean verifyloginIntoAccountText(){
         return loginIntoAccountText.isDisplayed();
     }
@@ -110,7 +116,12 @@ public class LoginPage {
         }
      return true;
     }
-
+    public void loggedInAs(String section)
+    {
+        WebElement name=  driver.findElement(By.xpath("//b[contains(.,'" + section + "')]"));
+       // name.getText();
+        System.out.println(name.getText());
+    }
     public void ClickDeleteAccountButton(){
         deleteAccountLink.click();
     }

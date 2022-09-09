@@ -32,7 +32,7 @@ public class RemoveProductsFromCart_T000017 extends BaseClass {
         //5. Click 'Cart' button
         product.clickViewCart();
 
-        //16. Verify that cart page is displayed
+        //6. Verify that cart page is displayed
         common.validatePageURL("cart");
 
         //7. Click 'X' button corresponding to particular product

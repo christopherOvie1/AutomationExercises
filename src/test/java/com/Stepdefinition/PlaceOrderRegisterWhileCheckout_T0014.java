@@ -11,6 +11,7 @@ public class PlaceOrderRegisterWhileCheckout_T0014 extends BaseClass{
     @Test
     public void placeOrderRegisterWhileCheckout() throws InterruptedException {
 
+        //Test data
         String day= "23",month="May",year="2020";
         String firstName= "chris", lastName="john",company = "abc ltd",addressLn1="4",addressLn2= "abc st",country = "Canada",state= "ottawa",city="test",zipcode="23432",mobileNumber="123455";
         String nameOnCard ="John", cardNumber = "345",cvc="123",expirationMonth ="January",expirationYear ="2023";
@@ -102,8 +103,8 @@ public class PlaceOrderRegisterWhileCheckout_T0014 extends BaseClass{
 
         //18. Verify success message 'Your order has been placed successfully!'
        // Thread.sleep(5000);
-      String succMessage=  cart.verifySuccessMessage();
-       System.out.println(succMessage);
+     // String succMessage=  cart.verifySuccessMessaging();
+      // System.out.println(succMessage);
 
      //19. Click 'Delete Account' button
         navigation.NavigateTo("Delete Account");

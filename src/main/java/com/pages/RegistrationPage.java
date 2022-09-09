@@ -39,7 +39,13 @@ public class RegistrationPage {
 //years
     @FindBy(xpath="//select[@id='years']")
     WebElement  yearDropdown;
-//company
+
+    @FindBy(id="newsletter")
+    WebElement  newsLetterCheckbox;
+
+    @FindBy(id="optin")
+    WebElement  specialOffersCheckbox;
+
     @FindBy(css="#first_name")
     WebElement  firstNameField;
 
@@ -110,7 +116,10 @@ public class RegistrationPage {
         Select year = new Select(yearDropdown);
         year.selectByValue(years);
     }
-
+public void selectCheckboxes(){
+        newsLetterCheckbox.click();
+        specialOffersCheckbox.click();
+}
     public void enterAddressInfo(String firstNm,String lastNm,String company,String address1,String address2,String countries,String state,String city,String zipcode,String mobileNumber){
         firstNameField.sendKeys(firstNm);
         lastNameField.sendKeys(lastNm);

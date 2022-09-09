@@ -10,6 +10,7 @@ public class VerifyProductQuantityInCart_T0013 extends BaseClass {
     @Test
     public void verifyProductQuantityInCart_T0013() {
 
+        //Test data
         String items = "Stylish Dress";
 
         HomePage homePage = new HomePage(driver);

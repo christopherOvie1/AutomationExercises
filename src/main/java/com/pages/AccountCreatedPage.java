@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class AccountCreatedPage {
     public static WebDriver driver;
+
     public AccountCreatedPage(WebDriver driver) {
         this.driver=driver;
         PageFactory.initElements(driver,this);}

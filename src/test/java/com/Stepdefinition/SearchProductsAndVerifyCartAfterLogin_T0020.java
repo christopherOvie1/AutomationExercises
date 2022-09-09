@@ -9,6 +9,7 @@ public class SearchProductsAndVerifyCartAfterLogin_T0020 extends BaseClass{
     @Test
     public void searchProductsAndVerifyCartAfterLogin_T0020(){
 
+        //Test data
         String nameOfProduct="Blue Top";
         String brand1  = "Polo", brand2 = "H&M";
 

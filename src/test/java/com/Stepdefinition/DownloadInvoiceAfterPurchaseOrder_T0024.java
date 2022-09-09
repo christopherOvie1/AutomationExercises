@@ -9,6 +9,7 @@ public class DownloadInvoiceAfterPurchaseOrder_T0024 extends BaseClass {
     @Test
     public void downloadInvoiceAfterPurchaseOrder() {
 
+        //Test data
         String nameOfProduct = "Blue Top";
         String day = "23", month = "May", year = "2020";
         String firstName = "chris", lastName = "john", company = "abc ltd", addressLn1 = "4", addressLn2 = "abc st", country = "Canada", state = "ottawa", city = "test", zipcode = "23432", mobileNumber = "123455";

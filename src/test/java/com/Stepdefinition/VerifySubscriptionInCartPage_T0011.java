@@ -9,13 +9,13 @@ public class VerifySubscriptionInCartPage_T0011 extends BaseClass {
     @Test
     public void verifySubscriptionInCartPage() {
 
+        //Test data
         String text = "SUBSCRIPTION";
         String email= "abc@test.com";
+
         HomePage homePage = new HomePage(driver);
-        CommonPage common = new CommonPage(driver);
-        ProductPage product = new ProductPage(driver);
-        ProductDetailsPage productDetails = new ProductDetailsPage(driver);
         NavigationPage navigation = new NavigationPage(driver);
+
         //1 & 2  Navigate to url 'http://automationexercise.com'
         driver.get(baseURL);
 
@@ -39,7 +39,13 @@ public class VerifySubscriptionInCartPage_T0011 extends BaseClass {
         homePage.enterEmailAndNavigateToNextPage(email);
 
         //8. Verify success message 'You have been successfully subscribed!' is visible
-        homePage.confirmMessageSent(driver);
+        //homePage.confirmMessageSent(driver);
+       String c= homePage.subsribedVerifidMessage();
+        System.out.println(c);
+        String expectedVerifiedMessage= "You have been successfully subscribed!";
+
+        String actualVerifiedMessage=homePage.subsribedVerifidMessage();
+        Assert.assertEquals(actualVerifiedMessage,expectedVerifiedMessage,"no match found");
 
 
 

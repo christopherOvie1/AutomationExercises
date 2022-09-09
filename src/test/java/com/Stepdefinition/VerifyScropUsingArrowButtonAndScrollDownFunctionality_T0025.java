@@ -11,6 +11,7 @@ public class VerifyScropUsingArrowButtonAndScrollDownFunctionality_T0025 extends
     @Test
     public void VerifyScropUsingArrowButtonAndScrollDownFunctionality() {
 
+        //Test data
         String text = "SUBSCRIPTION";
 
         HomePage homePage = new HomePage(driver);

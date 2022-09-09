@@ -13,6 +13,7 @@ public class RegisterUserWithExistingEmail_T005 extends BaseClass{
     @Test
     public void registerUserWithExistingEmail(){
 
+        //Test data
         String name= "test", email= "christophodibo@yahoo.com";
         String errorEmailMessage= "Email Address already exist!";
 

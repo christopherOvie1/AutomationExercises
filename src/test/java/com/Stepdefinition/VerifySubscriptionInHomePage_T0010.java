@@ -9,11 +9,14 @@ import org.testng.annotations.Test;
 public class VerifySubscriptionInHomePage_T0010 extends BaseClass {
 
 
-    String test = "test123@gmail.com";
 
+    @Test
     public void verifySubscriptionInHomePage() throws InterruptedException {
+
+        String test = "test123@gmail.com";
+
         HomePage homePage = new HomePage(driver);
-        NavigationPage navigation = new NavigationPage(driver);
+        
 
 
         //1 & 2 Navigate to url 'http://automationexercise.com'
@@ -36,7 +39,13 @@ public class VerifySubscriptionInHomePage_T0010 extends BaseClass {
         homePage.enterEmailAndNavigateToNextPage(test);
 
         //7. Verify success message 'You have been successfully subscribed!' is visible
-        homePage.confirmMessageSent(driver);
+        String c= homePage.subsribedVerifidMessage();
+        System.out.println(c);
+        String expectedVerifiedMessage= "You have been successfully subscribed!";
+
+        String actualVerifiedMessage=homePage.subsribedVerifidMessage();
+        Assert.assertEquals(actualVerifiedMessage,expectedVerifiedMessage,"no match found");
+
 
 
     }

@@ -12,6 +12,7 @@ public class SearchProduct_T009 extends BaseClass{
     @Test
     public void verifySearchProduct(){
 
+        //Test data
         String nameOfProduct="Blue Top";
         String nameOfItem= "Winter Top";
 

@@ -10,7 +10,11 @@ public class AddReviewOnProduct_T0021 extends BaseClass {
     @Test
     public void searchProductsAndVerifyCartAfterLogin_T0020() throws InterruptedException {
 
+        //Test data
         String name ="test",email="test@test.com",review="i am ready";
+
+
+
         NavigationPage navigation = new NavigationPage(driver);
         CommonPage common = new CommonPage(driver);
         ProductPage product = new ProductPage(driver);

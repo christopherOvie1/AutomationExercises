@@ -64,6 +64,9 @@ public class HomePage {
     @FindBy(xpath="//a[contains(.,'Polo')]")
     WebElement  poloBrand;
 
+    @FindBy(xpath="//*[contains(text(),'You have been successfully subscribed!')]")
+    WebElement  subscribedSuccessMessage;
+
 
 
 //web actions
@@ -109,6 +112,10 @@ public void confirmMessageSent(WebDriver driver) {
       w.until(ExpectedConditions.
               visibilityOfElementLocated(By.xpath("//*[contains(text(),'You have been successfully subscribed!')]")));
 
+}
+
+public String subsribedVerifidMessage(){
+   return    subscribedSuccessMessage.getText();
 }
 
 

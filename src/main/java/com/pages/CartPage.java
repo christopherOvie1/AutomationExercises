@@ -6,16 +6,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class CartPage {
 
     public static WebDriver driver;
-   WebDriverWait wait;
+  public  WebDriverWait wait;
 
     public CartPage(WebDriver driver) {
         this.driver=driver;
@@ -138,10 +144,22 @@ public void EnterDescriptionInCommentTextAreaAndClickPlaceOrder(String message){
     placeOrderButton.click();
 }
 
-public String verifySuccessMessage(){
-    // return   successMessage.getText();
-    return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(.,'Your order has been placed successfully!')]//div[@class='alert-success alert']"))).getText();
+public String verifySuccessMessaging() throws InterruptedException {
 
+       //driver.navigate().back();
+       WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(15));
+       w.pollingEvery(Duration.ofNanos(1));
+    w.until(d -> d.findElement(By.xpath("//div[contains(.,'Your order has been placed successfully!')]//div[@class='alert-success alert']")).isDisplayed());
+//       Wait wait = new FluentWait(driver)
+//            .withTimeout( java.time.Duration.ofSeconds(15))
+//            .pollingEvery(java.time.Duration.ofMillis(100))
+//            .ignoring(Exception.class);
+//wait.until()
+
+    //wait.until(d -> d.findElement(By.xpath("//div[contains(.,'Your order has been placed successfully!')]//div[@class='alert-success alert']")).isDisplayed());
+    // return   successMessage.getText();
+//    return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(.,'Your order has been placed successfully!')]//div[@class='alert-success alert']"))).getText();
+return driver.findElement(By.xpath("//div[contains(.,'Your order has been placed successfully!')]//div[@class='alert-success alert']")).getText();
 }
 
 public void verifySuccessfulText(){

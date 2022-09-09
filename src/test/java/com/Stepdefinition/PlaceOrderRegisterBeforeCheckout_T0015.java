@@ -8,13 +8,14 @@ public class PlaceOrderRegisterBeforeCheckout_T0015 extends BaseClass{
 
 
     @Test
-    public void placeOrderRegisterBeforeCheckout(){
+    public void placeOrderRegisterBeforeCheckout() throws InterruptedException {
 
+        //Test data
         String clothes = "Fancy Green Top";
         String day= "23",month="May",year="2020";
         String firstName= "chris", lastName="john",company = "abc ltd",addressLn1="4",addressLn2= "abc st",country = "Canada",state= "ottawa",city="test",zipcode="23432",mobileNumber="123455";
         String nameOnCard ="John", cardNumber = "345",cvc="123",expirationMonth ="January",expirationYear ="2023";
-
+        String gender = "Mr";
 
         HomePage homePage = new HomePage(driver);
         NavigationPage navigation = new NavigationPage(driver);
@@ -48,7 +49,8 @@ public class PlaceOrderRegisterBeforeCheckout_T0015 extends BaseClass{
 
         //6 AND 7 Verify 'ACCOUNT CREATED!' and click 'Continue' button
 
-        register.getRadioButtons();
+
+        address.clickMrOrMrsRadioButton(gender);
         register.enterPassword("ahh65bgfd");
 
         register.selectDateOfBirth(day,month,year);
@@ -60,7 +62,7 @@ public class PlaceOrderRegisterBeforeCheckout_T0015 extends BaseClass{
 
         accountCreated.clickContinueButton();
 
-// 7. Verify ' Logged in as username' at top
+// 8. Verify ' Logged in as username' at top
         loginPage.verifyThatLoggedusernameIsVisible();
 
         //8 Add products to cart
@@ -97,6 +99,8 @@ public class PlaceOrderRegisterBeforeCheckout_T0015 extends BaseClass{
         String expectedSuccessMessage= "Your order has been placed successfully!";
         System.out.println(actualSuccessMessage);*/
     //Assert.assertEquals(actualSuccessMessage,expectedSuccessMessage);
+
+      //  payment.verifySuccessMessages();
 
         //17. Click 'Delete Account' button
         navigation.NavigateTo("Delete Account");

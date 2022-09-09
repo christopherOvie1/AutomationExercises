@@ -12,8 +12,11 @@ public class LoginUserWithCorrectEmailAndPassword_T002 extends BaseClass{
     @Test
     public void loginUserWithCorrectEmailAndPassword() throws InterruptedException {
 
+        //Test data
         String email = "christophodibo@yahoo.com";
         String password= "Father60";
+        String name = "chris";
+
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(driver);
         RegistrationPage register = new RegistrationPage(driver);
@@ -45,7 +48,12 @@ public class LoginUserWithCorrectEmailAndPassword_T002 extends BaseClass{
        System.out.println("logged in user is not visible");
    }
         Assert.assertTrue(loginPage.verifyThatLoggedusernameIsVisible());
+      //  loginPage.validateLoggedUsername("chris ovie");
+        //Assert.assertEquals(loginPage.validateLoggedUsername("chris ovie"),"jj");
+//Assert.assertEquals(loginPage.validateLoggedUsername());
 
+       // Assert.assertEquals(loginPage.validLogername(),"Logged in as chris");
+    loginPage.loggedInAs(name);
 
         //9. Click 'Delete Account' button
         loginPage.ClickDeleteAccountButton();
